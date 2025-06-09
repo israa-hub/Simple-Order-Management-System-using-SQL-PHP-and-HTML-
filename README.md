@@ -1,6 +1,9 @@
 # Simple-Order-Management-System-using-SQL-PHP-and-HTML
 
 # SQL + PHP Orders Database Project
+### 📚 University Project – Database System CA
+
+This project was completed during my **second year** of the **BSc in Mathematics and Data Science** at **Dundalk Institute of Technology**, as part of the continuous assessment for the **Database Systems** module. The objective was to build a simple order management system using SQL, PHP and HTML
 
 ## 📦 Project Overview
 
