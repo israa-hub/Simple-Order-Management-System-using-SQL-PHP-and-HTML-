@@ -1,0 +1,186 @@
+
+CREATE TABLE Customers (
+CustomerID varchar(50) NOT NULL,
+CustomerName VARCHAR(50),
+CustomerAddress VARCHAR(50),
+CustomerTelephoneNumber VARCHAR(15),
+PRIMARY KEY (CustomerID)
+);
+
+insert into Customers values('A1234','Joe Bloggs','2 Old Rd','04273619');
+insert into Customers values('A5678','Fred Bloggs','21 New Rd','04134816');
+insert into Customers values('B1234','Sam Smith','10 High St','04291062');
+insert into Customers values('B5678','Lucy Murphy','37 Old St','04274356');
+insert into Customers values('C1234','John Clarke','29 High St','04275674');
+insert into Customers values ('B3422', 'Kevin O Neill', '34 High St', '05678342');
+insert into Customers values ('B2157', 'Maura Clarke', '11 Chapel St','04321678' );
+insert into Customers values ('D2513', 'Ciara Murphy', '61 New Rd','03267813');
+insert into Customers values ('D3215', 'Mark Byrne', '11 Chapel St', '09247684');
+insert into Customers values ('F4352', 'Orla Ferris', '45 Chapel St','08729517');
+
+
+create table Orders(OrderID int NOT NULL,
+OrderDate DATE,
+CustomerID varchar(50),
+PRIMARY KEY (OrderID ),
+FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+insert into Orders VALUES(12345,'2023-11-11','A1234');
+insert into Orders VALUES(67890,'2023-10-29','A5678');
+insert into Orders VALUES(23456,'2023-11-20','B1234');
+insert into Orders VALUES(78901,'2023-11-10','B5678');
+insert into Orders VALUES(34567,'2023-10-30','C1234');
+insert into Orders values(34526,  '2023-03-12' ,'B3422');
+insert into Orders values(65783,  '2023-07-21' ,'B2157');
+insert into Orders values(98432,  '2023-06-02' ,'D2513');
+insert into Orders values(86321,  '2023-05-17' ,'D3215');
+insert into Orders values(76543,  '2023-10-27' ,'F4352');
+insert into Orders values(67421,  '2023-05-27' ,'F4352');
+insert into Orders values(34578,  '2023-01-09' ,'F4352');
+
+
+
+CREATE TABLE Suppliers (
+SupplierID INT NOT NULL,
+SupplierName VARCHAR(50),
+SupplierAddress VARCHAR(50),
+SupplierTelephoneNumber VARCHAR(15),
+PRIMARY KEY (SupplierID )
+);
+
+INSERT INTO Suppliers VALUES(10023,'KAC','24 Chapel St','09735267');
+INSERT INTO Suppliers VALUES(10012,'ASDF','15 Old Rd','05667342');
+INSERT INTO Suppliers VALUES(10044,'NAN','78 High St','06789267');
+INSERT INTO Suppliers VALUES(10067,'GAF','67 New Rd','09867245');
+INSERT INTO Suppliers VALUES(10079,'TAN','89 Chapel Rd','09826513');
+INSERT INTO Suppliers VALUES(76882,'ACC','00 Chapel Rd','07266252');
+INSERT INTO Suppliers VALUES(77662,'UUI','992 Chapel Rd','05257222');
+
+
+CREATE TABLE Products (
+ProductID INT NOT NULL,
+ProductName VARCHAR(50),
+ProductPrice DECIMAL(10, 2),
+QuantityInStock INT,
+SupplierID INT,
+PRIMARY KEY (ProductID),
+FOREIGN KEY (SupplierID) REFERENCES Suppliers(SupplierID)
+);
+
+insert into Products VALUES(25644,'TV',249.99,23,10012);
+insert into Products VALUES(26752,'iPhone 13', 999.99, 30, 10023);
+insert into Products VALUES(26254,'Computer',212.99,23,10067);
+insert into Products VALUES(26542,'iPhone 14', 1999.99, 60 , 10079);
+insert into Products VALUES(28475,'Blender', 399.99 , 6, 10012);
+insert into Products VALUES(20475,'Microwave', 99.99, 18, 10067);
+insert into Products VALUES(28563,'Keyboard',89.99, 23,10067);
+insert into Products VALUES(28932,'Air Fryer', 70.00, 43, 10079);
+insert into Products VALUES(29890,'Laptop', 1200.00 , 54, 10023);
+insert into Products VALUES(22849,'Mouse',29.99,20,10044);
+
+#we added the below code for queries 
+alter table Products add ReorderLevel int;
+update Products set ReorderLevel = 20 where ProductName='TV';
+update Products set ReorderLevel = 40 where ProductName='iPhone 13';
+update Products set ReorderLevel = 20 where ProductName='Computer';
+update Products set ReorderLevel = 50 where ProductName='iPhone 14';
+update Products set ReorderLevel = 10 where ProductName='Blender';
+update Products set ReorderLevel = 20 where ProductName='Microwave';
+update Products set ReorderLevel = 20 where ProductName='Keyboard';
+update Products set ReorderLevel = 30 where ProductName='Air Fryer';
+update Products set ReorderLevel = 40 where ProductName='Laptop';
+update Products set ReorderLevel = 20 where ProductName='Mouse';
+
+
+
+
+CREATE TABLE OrderDetails (
+OrderID INT,
+ProductID INT,
+QuantityOrdered INT,
+PRIMARY KEY (OrderID, ProductID),
+FOREIGN KEY (OrderID) REFERENCES Orders(OrderID),
+FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
+);
+
+insert into OrderDetails VALUES(12345, 25644, 1);
+insert into OrderDetails VALUES(67890, 28475, 1);
+insert into OrderDetails VALUES(78901, 29890, 1);
+insert into OrderDetails VALUES(23456, 28932, 1);
+insert into OrderDetails VALUES(34567, 29890, 1);
+insert into OrderDetails VALUES(34526,25644,1);
+insert into OrderDetails VALUES(65783,29890,1);
+insert into OrderDetails VALUES(98432,28475,1);
+insert into OrderDetails VALUES(86321,26542,1);
+insert into OrderDetails VALUES(76543,28563,1);
+insert into OrderDetails VALUES(12345, 26542, 1);
+insert into OrderDetails VALUES(65783,28563,1);
+insert into OrderDetails VALUES(98432,26254,1);
+insert into OrderDetails VALUES(12345, 28475, 1);
+insert into OrderDetails VALUES(86321,28475,1);
+insert into OrderDetails VALUES(76543,29890,1);
+insert into OrderDetails VALUES(67421, 28932, 2);
+insert into OrderDetails VALUES(67421, 26254, 1);
+insert into OrderDetails VALUES(34578,22849,1);
+
+
+
+#---------------------------------------------------------
+
+#QUERIES
+
+select ProductName, ProductPrice, QuantityInStock from Products
+where ProductPrice > 200
+order by ProductPrice;
+
+select * from Customers where CustomerAddress like "%Chapel St" or CustomerName like "%Bloggs" ;
+
+select CustomerName, OrderDate from Customers JOIN Orders USING (CustomerID) where month(OrderDate) = 10 ;
+
+select * from Suppliers join Products using (SupplierID) where ProductPrice > 70 and ProductName = "TV" ;
+
+select OrderID,OrderDate from Orders where month(OrderDate) > 7;
+
+select CustomerName, OrderDate from Customers JOIN Orders USING (CustomerID) where month(OrderDate) = 10;
+
+
+#selecting the order ID, customer name, and the products that the customer order, based on customer name
+select Orders.OrderID, Customers.CustomerName, Products.ProductName, OrderDetails.QuantityOrdered
+from Orders,Customers,Products,OrderDetails
+where Orders.OrderID = OrderDetails.OrderID
+and Customers.CustomerID = Orders.CustomerID
+and Products.ProductID = OrderDetails.ProductID
+and Customers.CustomerName = 'Orla Ferris';
+
+
+#Return the total number of products sold
+select Products.ProductName, sum(OrderDetails.QuantityOrdered) as total_quantity
+from Products, OrderDetails
+where Products.ProductID = OrderDetails.ProductID
+group by Products.ProductName
+order by total_quantity desc;
+
+
+#selecting the orderID, product price, and the quantity of product ordered, to make a new column to calculate the total price
+select OrderDetails.OrderID,Products.ProductName, OrderDetails.QuantityOrdered, Products.ProductPrice,( OrderDetails.QuantityOrdered*Products.ProductPrice) as total_price
+from OrderDetails,Products
+where OrderDetails.ProductID = Products.ProductID;
+
+
+#total_stock_value_of_product
+select Products.ProductName, Products.ProductPrice , Products.QuantityInStock,  Products.ProductPrice * Products.QuantityInStock as stock_value
+from Products order by stock_value;
+
+#get the products that a customer order
+select Orders.OrderID, Customers.CustomerName, sum(Products.ProductPrice * OrderDetails.QuantityOrdered) as value  
+from Orders, Customers, Products, OrderDetails
+where Orders.OrderID = OrderDetails.OrderID 
+and Customers.CustomerID = Orders.CustomerID 
+and Products.ProductID = OrderDetails.ProductID group by Orders.OrderID;
+
+
+
+
+
+
