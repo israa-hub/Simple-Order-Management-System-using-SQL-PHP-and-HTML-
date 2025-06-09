@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Order</title>
+
+        <meta charset="UTF-8">
+
+         
+    </head>
+
+    <body>
+        <h1>Orders Database</h1> 
+		
+		<h2>Search for Records</h2>
+
+        <label class="title">SELECT all Orders</label><br />
+        <button onclick="window.location.href = 'allorders.php'">
+            Display ALL Orders
+        </button><br />  
+		
+		<!-- 
+			No need for a SUBMIT button as we are NOT submitting any information
+			
+			We have  TWO submit buttons below, SO WE NEED THREE FORM TAGS as 
+			WE WANT TO GET TO THREE DIFFERENT WEB PAGES
+		-->
+			
+
+        <h3>OR</h3>	
+
+        <label class="title">SELECT one Order</label>
+        <form action="oneorder.php" method='post'>
+            <input type='submit' value='Search for order based on product name' name='searchSomeOrder' />
+            <input type="text" name="ProductName" size="40" placeholder = "Enter a product name" required />     
+        </form>
+
+        <h3>OR</h3>	
+
+        <label class="title">SELECT some Order</label>
+        <form action="someorder_customer.php" method='post'>
+            <input type='submit' value='Search for order based on customer name' name='searchSomeOrder' />
+            <input type="text" name="CustomerName" size="40" placeholder = "Enter a customer name" required />     
+        </form>
+
+        <h2>Add a new Record</h2>
+
+        <label class="title">INSERT a New Order</label><br />
+        <button onclick="window.location.href = 'neworder.html'">Add a new Order</button>
+    </body>
+</html>
