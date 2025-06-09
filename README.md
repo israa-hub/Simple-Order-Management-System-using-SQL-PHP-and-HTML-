@@ -50,3 +50,6 @@ To run the PHP files, you need a local web server. The easiest option is using *
 - Insert orders into the database using PHP and SQL.
 - View all existing orders.
 - View individual orders and filter by customer or product name.
+- Make sure your PHP files include the correct database connection info (`host`, `username`, `password`, `dbname`).
+- This is a **simple student project** — it does not include advanced validation, security, or styling.
+
