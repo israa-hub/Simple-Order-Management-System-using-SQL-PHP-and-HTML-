@@ -19,8 +19,6 @@ This project is a simple **web-based order management system** using HTML, PHP, 
 | `allorders.php` | PHP | Displays a list of all orders stored in the database using a SELECT query. |
 | `oneorder.php` | PHP | Shows details of a single order (may require editing to pass an order ID). |
 | `someorder_customer.php` | PHP | Shows orders for a specific customer (filters results by customer ID). |
-| `DkIT-Continuous-Assessment-Cover.docx` | Word Document | Standard DkIT assignment cover sheet. |
-| `README.md` | Markdown | (This file) Instructions on setting up and running the project. |
 
 ---
 
