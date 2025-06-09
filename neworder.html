@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>ADD Friend</title>
+
+		<meta charset="UTF-8">
+
+         
+	</head>
+
+	<body>
+		<h1>Orders</h1>   
+
+		<h3>Enter NEW Order Details</h3>
+
+		<form action="addorder.php" method='post'>
+			<label>ID of Order:</label>
+            <span class="tab">
+				<input type="text" name="OrderID" size="40" required />
+            </span>
+            <br />
+
+            <label>Date of Order:</label>
+            <span class="tab">
+				<input type="text" name="OrderDate" size="20"  required />
+            </span>
+            <br />
+
+            
+            <label> Id of customer:</label>
+            <span class="tab">
+				<input type="text" name="CustomerID" size="10" required />
+            </span>
+            <br />
+
+			<label> Name of customer:</label>
+            <span class="tab">
+				<input type="text" name="CustomerName" size="10" required />
+            </span>
+            <br />
+
+			<label> Telephone number of customer:</label>
+            <span class="tab">
+				<input type="text" name="CustomerTelephoneNumber" size="10" required />
+            </span>
+            <br />
+
+			<label> Id of Product: </label>
+            <span class="tab">
+				<input type="text" name="ProductID" size="10" required />
+            </span>
+            <br />
+
+			<label> Quantity Ordered:</label>
+            <span class="tab">
+				<input type="text" name="QuantityOrdered" size="10" required />
+            </span>
+            <br />
+
+
+            <br />
+
+            <input type='submit' value='Add' name='addorder' />
+		</form>
+		<br />
+            
+		<input type="button" onclick="window.location.href = 'index.html'" value="Home" />
+	</body>
+</html>
