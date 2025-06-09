@@ -35,7 +35,7 @@ This project is a simple **web-based order management system** using HTML, PHP, 
 
 ### 2. 🌐 Set Up the Web Server
 
-To run the PHP files, you need a local web server. The easiest option is using **XAMPP** or **MAMP**:
+To run the PHP files, you need a local web server. The easiest option is using **XAMPP**:
 
 #### Using XAMPP:
 
