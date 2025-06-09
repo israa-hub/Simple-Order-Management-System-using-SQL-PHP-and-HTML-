@@ -39,7 +39,11 @@ To run the PHP files, you need a local web server. The easiest option is using *
 
 #### Using XAMPP:
 
-1. Install [XAMPP](https://www.apachefriends.org/index.html).
-2. Copy the whole project folder into `htdocs` (e.g., `C:\xampp\htdocs\databaseproject`).
+1. Install [XAMPP]
+2. Copy the whole project folder into `htdocs` 
 3. Start **Apache** and **MySQL** from the XAMPP Control Panel.
-4. In your browser, open:
+4. In your browser, open `index.html`:
+- Add new orders via an HTML form.
+- Insert orders into the database using PHP and SQL.
+- View all existing orders.
+- View individual orders and filter by customer or product name.
