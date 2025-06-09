@@ -42,7 +42,7 @@ To run the PHP files, you need a local web server. The easiest option is using *
 1. Install [XAMPP]
 2. Copy the whole project folder into `htdocs` 
 3. Start **Apache** and **MySQL** from the XAMPP Control Panel.
-4. In your browser, open `index.html`:
+4. In your browser, open `index.html`and`neworder.html` :
 - Add new orders via an HTML form.
 - Insert orders into the database using PHP and SQL.
 - View all existing orders.
